@@ -10,7 +10,7 @@ cubox
 [rewrite_local]
 ^http[s]?:\/\/cubox.pro\/c\/api\/userInfo.+$ url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/cu.js
 [mitm] 
-hostname =cubox.pro
+hostname = cubox.pro
 *******************************
 Surge
 
@@ -18,7 +18,7 @@ Surge
 ^http[s]?:\/\/cubox.pro\/c\/api\/userInfo.+$ requires-body=1,max-size=0,script-path=cubox.js
 
 [MITM]
-hostname =cubox.pro
+hostname = cubox.pro
 
 *******************************/
 var obj = JSON.parse($response.body);
