@@ -8,7 +8,7 @@
 群1077223830
 *******************************
 [rewrite_local]
-^http[s]?:\/\/api.wfdata.club\/v1\/user\/homePageInfo.+$ url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/wf.js
+^http[s]?:\/\/api.wfdata.club\/user\/homePageInfo.+$ url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/wf.js
 [mitm] 
 hostname = api.wfdata.club
 *******************************
@@ -23,6 +23,6 @@ hostname = api.wfdata.club
 *******************************/
 var obj = JSON.parse($response.body);
     obj.isUgcUser= true,;
-obj.vipExpiryDate= "2099-1-1",;
+obj.vipExpiryDate= /v1
 obj.isVip= true;
     $done({body: JSON.stringify(obj)});
