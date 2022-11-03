@@ -18,7 +18,7 @@ Surge
 ^http[s]?:\/\/api.wfdata.club\/v1\/user\/homePageInfo.+$ requires-body=1,max-size=0,script-path= https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/wf.js
 
 [MITM]
-hostname = *.wfdata.*
+hostname = api.wfdata.club
 
 *******************************/
 var obj = JSON.parse($response.body);
