@@ -8,7 +8,7 @@
 群1077223830
 *******************************
 [rewrite_local]
-^http[s]?:\/\/api.wfdata.club\/v1\/user\/homePageInfo.+$ url script-response-body wfdata.js
+^http[s]?:\/\/api.wfdata.club\/v1\/user\/homePageInfo.+$ url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/wf.js
 [mitm] 
 hostname = *.wfdata.*
 *******************************
