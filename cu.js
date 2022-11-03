@@ -10,7 +10,7 @@ cubox
 [rewrite_local]
 ^http[s]?:\/\/cubox.pro\/c\/api\/userInfo.+$ url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/cu.js
 [mitm] 
-hostname = cubox.pro
+hostname = *cubox.pro*
 *******************************
 Surge
 
