@@ -8,14 +8,13 @@
 群1077223830
 *******************************
 [rewrite_local]
-^http[s]?:\/\/api.yonekura.cn\/3.6.8\/uicommon\/getuser.+$ url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/cd.js
-[mitm] 
+^http[s]?:\/\/api.yonekura.cn\/3.6.8\/uicommon\/getuser.+$ url script-response-body yonekura.js
 hostname = *.yonekura.*
 *******************************
 Surge
 
 [Script]
-^http[s]?:\/\/api.yonekura.cn\/3.6.8\/uicommon\/getuser.+$ requires-body=1,max-size=0,script-path=yonekura.js
+^http[s]?:\/\/api.yonekura.cn\/3.6.8\/uicommon\/getuser.+$ requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/cd.js
 
 [MITM]
 hostname = *.yonekura.*
