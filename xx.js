@@ -15,7 +15,7 @@ hostname = *.yiyan.*
 Surge
 
 [Script]
-^http[s]?:\/\/app.yiyan.art.+$ requires-body=1,max-size=0,script-path=yiyan.js
+^http[s]?:\/\/app.yiyan.art.+$ requires-body=1,max-size=0,script-path= https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/xx.js
 
 [MITM]
 hostname = *.yiyan.*
