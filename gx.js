@@ -8,7 +8,7 @@
 群1077223830
 *******************************
 [rewrite_local]
-^http[s]?:\/\/zhengjian.flyingeffect.com\/api\/user\/userInfo.+$ url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/gx.js
+^http[s]?:\/\/zhengjian.flyingeffect.com\/api\/user\/userInfo.+$ url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/gx..js
 [mitm] 
 hostname = *zhengjian.flyingeffect.com*
 *******************************
