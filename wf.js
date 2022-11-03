@@ -10,7 +10,7 @@
 [rewrite_local]
 ^http[s]?:\/\/api.wfdata.club\/v1\/user\/homePageInfo.+$ url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/wf.js
 [mitm] 
-hostname = api.wfdata.club
+hostname =api.wfdata.club
 *******************************
 Surge
 
