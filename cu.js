@@ -8,14 +8,14 @@ cubox
 群1077223830
 *******************************
 [rewrite_local]
-^http[s]?:\/\/cubox.pro\/c\/api\/userInfo.+$ url script-response-body  https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/cu.js
+^http[s]?:\/\/cubox.pro\/c\/api\/userInfo.+$ url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/cu.js
 [mitm] 
 hostname = *.cubox.*
 *******************************
 Surge
 
 [Script]
-^http[s]?:\/\/cubox.pro\/c\/api\/userInfo.+$ requires-body=1,max-size=0,script-path=cubox.js
+^http[s]?:\/\/cubox.pro\/c\/api\/userInfo.+$ requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/cu.js
 
 [MITM]
 hostname = *.cubox.*
