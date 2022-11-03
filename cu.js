@@ -18,7 +18,7 @@ Surge
 ^http[s]?:\/\/cubox.pro\/c\/api\/userInfo.+$ requires-body=1,max-size=0,script-path=cubox.js
 
 [MITM]
-hostname = *.cubox.*
+hostname = cubox.pro
 
 *******************************/
 var obj = JSON.parse($response.body);
