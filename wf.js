@@ -24,5 +24,5 @@ hostname = api.wfdata.club
 var obj = JSON.parse($response.body);
     obj.isUgcUser= true,;
 obj.vipExpiryDate= /v1
-obj.isVip= true;
+obj.isVip= /v1;
     $done({body: JSON.stringify(obj)});
