@@ -22,6 +22,6 @@ hostname = *.flyingeffect.*
 
 *******************************/
 var obj = JSON.parse($response.body);
-    obj.is_vip= 1,;
-obj.vip_end_time= 30",;
+    obj.is_vip= 1;
+obj.vip_end_time= 30";
     $done({body: JSON.stringify(obj)});
