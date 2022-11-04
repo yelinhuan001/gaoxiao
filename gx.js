@@ -1,29 +1,21 @@
-
-
-/*******************************
-  公众号:木木IOS分享
-关注了解更多新科技！！！
-爱证件
-脚本名称:爱证件
-使用声明：️此脚本仅供学习与交流，
-        请勿转载与贩卖！️️️
-群1077223830
+/******************************
+⚠️如果放远程，请把Hh.js替换成运程链接⚠️
+  🧚🏻‍♂️作者：🍡魔法师、木木🍡
+  wx交流群：1077223830
+🫧脚本名称:爱证件
+🫧建议配合working copy一起食用
+✈️working copy下载地址https://apps.apple.com/app/id896694807✈️
 *******************************
+
 [rewrite_local]
-^http[s]?:\/\/zhengjian.flyingeffect.com\/api\/user\/userInfo.+$ url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/gx.js
-[mitm] 
-hostname = *.flyingeffect.*
-*******************************
-Surge
+^https?:\/\/zhengjian\.flyingeffect\.com\/api\/user\/userInfo*? url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/gx.js
 
-[Script]
-^http[s]?:\/\/zhengjian.flyingeffect.com\/api\/user\/userInfo.+$ requires-body=1,max-size=0,script-path=flyingeffect.js
 
-[MITM]
-hostname = *.flyingeffect.*
+[mitm]
+hostname = zhengjian.flyingeffect.com
 
 *******************************/
-var obj = JSON.parse($response.body);
-    obj.is_vip= 1;
-obj.vip_end_time= "2099-12-30";
-    $done({body: JSON.stringify(obj)});
+var body=$response.body;
+body = body.replace(/"is_vip\":0,'"is_vip":1,');
+body = body.replace(/"vip_end_time\":"2022-07-12 15:06:30",'"vip_end_time":"2099-07-12 15:06:30",');
+$done(body);
