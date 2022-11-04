@@ -16,6 +16,5 @@ hostname = zhengjian.flyingeffect.com
 
 *******************************/
 var body=$response.body;
-body = body.replace(/"is_vip\":0,'"is_vip":1,');
-body = body.replace(/"vip_end_time\":"2022-07-12 15:06:30",'"vip_end_time":"2099-07-12 15:06:30",');
+body = body.replace(/"vip_end_time\":".*?\"/g,'"vip_end_time":"2099-07-12 15:06:30"');
 $done(body);
