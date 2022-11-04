@@ -10,19 +10,19 @@ cubox
 [rewrite_local]
 ^http[s]?:\/\/cubox.pro\/c\/api\/userInfo.+$ url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/cu.js
 [mitm] 
-hostname = *.cubox.*
+hostname = *.pro.*
 *******************************
 Surge
 
 [Script]
-^http[s]?:\/\/cubox.pro\/c\/api\/userInfo.+$ requires-body=1,max-size=0,script-path=cubox.js
+^http[s]?:\/\/cubox.pro\/c\/api\/userInfo.+$ requires-body=1,max-size=0,script-path=pro.js
 
 [MITM]
-hostname = *.cubox.*
+hostname = *.pro.*
 
 *******************************/
-var body=$response.body;
-body = body.replace(/"admin\":false'"admin":true');
-body = body.replace(/"level\":0'"level":1');
-body = body.replace(/"expireTime\":null'"expireTime":2099-12-12');
-$done(body);
+var obj = JSON.parse($response.body);
+    obj.admin= true;
+obj.level= vip;
+obj.expireTime= 2099-12-12;
+    $done({body: JSON.stringify(obj)});
