@@ -23,6 +23,6 @@ hostname = *.pro.*
 *******************************/
 var obj = JSON.parse($response.body);
     obj.admin= true;
-obj.level= vip;
+obj.level= 1;
 obj.expireTime= 2099-12-12;
     $done({body: JSON.stringify(obj)});
