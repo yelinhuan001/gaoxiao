@@ -22,7 +22,7 @@ hostname = *.cubox.*
 
 *******************************/
 var body=$response.body;
-body = body.replace(/"admin\":false,'"admin":true,');
-body = body.replace(/"level\":0,'"level":1,');
-body = body.replace(/"expireTime\":null,'"expireTime":4088436968,');
+body = body.replace(/"admin\":false,'"admin":true');
+body = body.replace(/"level\":0,'"level":1');
+body = body.replace(/"expireTime\":null,'"expireTime":2099-12-12');
 $done(body);
