@@ -1,3 +1,5 @@
+
+
 /*******************************
   公众号:木木IOS分享
 关注了解更多新科技！！！
@@ -23,5 +25,5 @@ hostname = *.flyingeffect.*
 *******************************/
 var obj = JSON.parse($response.body);
     obj.is_vip= 1;
-obj.vip_end_time= 30";
+obj.vip_end_time= "2099-12-30";
     $done({body: JSON.stringify(obj)});
