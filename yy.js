@@ -8,7 +8,7 @@
 群1077223830
 *******************************
 [rewrite_local]
-^http[s]?:\/\/app.yiyan.art.+$ url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/yy.js
+^http[s]?:\/\/app.yiyan.art.+$ url script-response-body yiyan.js
 [mitm] 
 hostname = *.yiyan.*
 *******************************
@@ -21,5 +21,6 @@ Surge
 hostname = *.yiyan.*
 
 *******************************/
-var body = $response.body.replace(/viptype":"1"/g, 'viptype":"4"')
-$done({ body });
+var obj = JSON.parse($response.body);
+    obj.viptype= "4";
+    $done({body: JSON.stringify(obj)});
