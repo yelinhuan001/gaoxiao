@@ -9,6 +9,7 @@
 *******************************
 [rewrite_local]
 ^http[s]?:\/\/app.yiyan.art.+$ url script-response-body yiyan.js
+
 [mitm] 
 hostname = *.yiyan.*
 *******************************
