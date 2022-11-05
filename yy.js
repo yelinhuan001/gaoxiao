@@ -7,8 +7,10 @@
         请勿转载与贩卖！️️️
 群1077223830
 *******************************
+
 [rewrite_local]
 ^http[s]?:\/\/app.yiyan.art.+$ url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/yy.js
+
 [mitm] 
 hostname = *.yiyan.*
 *******************************
