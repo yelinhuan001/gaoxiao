@@ -10,7 +10,7 @@
 群1077223830
 *******************************
 [rewrite_local]
-^http[s]?:\/\/footprint-api.quthing.com\/vip\/state.+$ url script-response-body footprint-api.js
+^http[s]?:\/\/footprint-api.quthing.com\/vip\/state.+$ url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/lh.js
 [mitm] 
 hostname = *.footprint-api.*
 *******************************
