@@ -10,14 +10,14 @@
 群1077223830
 *******************************
 [rewrite_local]
-^http[s]?:\/\/footprint-api.quthing.com\/vip\/state.+$ url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/lh.js
+^http[s]?:\/\/footprint-api.quthing.com\/vip\/is\/expire.+$ url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/lh.js
 [mitm] 
 hostname = *.footprint-api.*
 *******************************
 Surge
 
 [Script]
-^http[s]?:\/\/footprint-api.quthing.com\/vip\/state.+$ requires-body=1,max-size=0,script-path=footprint-api.js
+^http[s]?:\/\/footprint-api.quthing.com\/vip\/is\/expire.+$ requires-body=1,max-size=0,script-path=footprint-api.js
 
 [MITM]
 hostname = *.footprint-api.*
