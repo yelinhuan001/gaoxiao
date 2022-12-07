@@ -10,7 +10,7 @@
 群1077223830
 *******************************
 [rewrite_local]
-^http[s]?:\/\/footprint-api.quthing.com\/vip\/is\/expire.+$ url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/lh.js
+^http[s]?:\/\/footprint-api.quthing.com\/vip\/is\/expire.+$ url script-response-body footprint-api.js
 [mitm] 
 hostname = *.footprint-api.*
 *******************************
@@ -24,5 +24,5 @@ hostname = *.footprint-api.*
 
 *******************************/
 var obj = JSON.parse($response.body);
-    obj.checkIsVip= true;
+    obj.data.checkIsVip= true;
     $done({body: JSON.stringify(obj)});
