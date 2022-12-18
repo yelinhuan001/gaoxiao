@@ -24,5 +24,5 @@ hostname = *.quthing.*
 
 *******************************/
 var obj = JSON.parse($response.body);
-    obj.validVip= true,;
+    obj.validVip= true;
     $done({body: JSON.stringify(obj)});
