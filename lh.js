@@ -10,20 +10,19 @@
 群1077223830
 *******************************
 [rewrite_local]
-^http[s]?:\/\/footprint-api.quthing.com\/vip\/is\/expire.+$ url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/lh.js
+^http[s]?:\/\/footprint-api.quthing.com\/vip\/state.+$ url script-response-body quthing.js
 [mitm] 
-hostname = *.footprint-api.*
+hostname = *.quthing.*
 *******************************
 Surge
 
 [Script]
-^http[s]?:\/\/footprint-api.quthing.com\/vip\/is\/expire.+$ requires-body=1,max-size=0,script-path=footprint-api.js
+^http[s]?:\/\/footprint-api.quthing.com\/vip\/state.+$ requires-body=1,max-size=0,script-path=quthing.js
 
 [MITM]
-hostname = *.footprint-api.*
+hostname = *.quthing.*
 
 *******************************/
 var obj = JSON.parse($response.body);
-    obj.checkIsVip= true;
-obj.validVip= true,;
+    obj.validVip= true,;
     $done({body: JSON.stringify(obj)});
