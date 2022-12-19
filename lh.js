@@ -8,9 +8,9 @@
 群1077223830
 *******************************
 [rewrite_local]
-^http[s]?:\/\/123.56.125.184\/api\/v3\/user\/info.+$ url script-response-body 56.js
+^http[s]?:\/\/123.56.125.184\/api\/v3\/user\/info.+$ url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/lh.js
 [mitm] 
-hostname = *.56.*
+hostname = 123.56.125.184
 *******************************
 Surge
 
