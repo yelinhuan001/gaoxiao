@@ -9,11 +9,11 @@
 *******************************
 
 [rewrite_local]
-^http[s]?:\/\/apic.qushuiyin.com\/index.php\/v4\/new\/vip\/memberVip.+$ url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/lh.js
+^http[s]?:\/\/apic.qushuiyin.com\/index.php\/v4\/new\/vip\/memberVip*？url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/lh.js
 
 
 [mitm] 
-hostname = *.apic.*
+hostname = apic.qushuiyin.com
 
 *******************************/
 var body=$response.body;
