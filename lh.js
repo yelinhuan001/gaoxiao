@@ -7,13 +7,18 @@
         请勿转载与贩卖！️️️
 群1077223830
 *******************************
-
 [rewrite_local]
-^http[s]?:\/\/apic.qushuiyin.com\/index.php\/v4\/new\/vip\/memberVip*？url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/lh.js
-
-
+^http[s]?:\/\/apic.qushuiyin.com\/index.php\/v4\/new\/vip\/memberVip.+$ url script-response-body qushuiyin.js
 [mitm] 
-hostname = apic.qushuiyin.com
+hostname = *.qushuiyin.*
+*******************************
+Surge
+
+[Script]
+^http[s]?:\/\/apic.qushuiyin.com\/index.php\/v4\/new\/vip\/memberVip.+$ requires-body=1,max-size=0,script-path=qushuiyin.js
+
+[MITM]
+hostname = *.qushuiyin.*
 
 *******************************/
 var body=$response.body;
