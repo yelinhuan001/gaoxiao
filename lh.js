@@ -8,7 +8,7 @@
 群1077223830
 *******************************
 [rewrite_local]
-^http?:\/\/apic.qushuiyin.com\/index.php\/v4\/new\/vip\/memberVip*? url script-response-body apic.js
+^http?:\/\/apic.qushuiyin.com\/index.php\/v4\/new\/vip\/memberVip*? url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/lh.js
 [mitm] 
 hostname = apic.qushuiyin.com
 *******************************/
