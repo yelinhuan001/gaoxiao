@@ -8,9 +8,9 @@
 群1077223830
 *******************************
 [rewrite_local]
-^http?:\/\/apic.qushuiyin.com\/index.php\/v4\/new\/vip\/memberVip*? url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/lh.js
+^http[s]?:\/\/apic.qushuiyin.com\/index.php\/v4\/new\/vip\/memberVip.+$ url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/lh.js
 [mitm] 
-hostname = apic.qushuiyin.com
+hostname = *.apic.*
 *******************************/
 
 var body=$response.body;
