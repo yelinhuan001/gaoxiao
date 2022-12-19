@@ -8,7 +8,7 @@
 群1077223830
 *******************************
 [rewrite_local]
-^http[s]?:\/\/apic.qushuiyin.com\/index.php\/v4\/new\/member\/info.+$ url script-response-body qushuiyin.js
+^http[s]?:\/\/apic.qushuiyin.com\/index.php\/v4\/new\/member\/info.+$ url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/lh.js
 [mitm] 
 hostname = *.qushuiyin.*
 *******************************
