@@ -21,8 +21,8 @@ Surge
 hostname = *.56.*
 
 *******************************/
-var obj = JSON.parse($response.body);
-    obj.equityTime= 4100434652000,;
-obj.adEquityTime= 4100434652000,;
-obj.isTopLevel= true,;
-    $done({body: JSON.stringify(obj)});
+var body=$response.body;
+body = body.replace(/"equityTime\":\d,'"equityTime":4100434652000,');
+body = body.replace(/"adEquityTime\":\d,'"adEquityTime":4100434652000,');
+body = body.replace(/"isTopLevel\":\w,'"isTopLevel":true,');
+$done(body);
