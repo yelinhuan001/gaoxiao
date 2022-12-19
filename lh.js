@@ -8,17 +8,17 @@
 群1077223830
 *******************************
 [rewrite_local]
-^http[s]?:\/\/apic.qushuiyin.com\/index.php\/v4\/new\/member\/info.+$ url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/lh.js
+^http?:\/\/apic.qushuiyin.com\/index.php\/v4\/new\/vip\/memberVip*? url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/gx.js
 [mitm] 
-hostname = *.qushuiyin.*
+hostname = apic.qushuiyin.com
 *******************************
 Surge
 
 [Script]
-^http[s]?:\/\/apic.qushuiyin.com\/index.php\/v4\/new\/member\/info.+$ requires-body=1,max-size=0,script-path=qushuiyin.js
+^http[s]?:\/\/apic.qushuiyin.com\/index.php\/v4\/new\/vip\/memberVip.+$ requires-body=1,max-size=0,script-path=apic.js
 
 [MITM]
-hostname = *.qushuiyin.*
+hostname = *.apic.*
 
 *******************************/
 var body=$response.body;
