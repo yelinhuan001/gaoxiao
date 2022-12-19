@@ -1,30 +1,28 @@
 /*******************************
   公众号:木木IOS分享
 关注了解更多新科技！！！
-恋爱季节宝典搜索
-脚本名称:恋爱季节宝典搜索
+电视家vip
+脚本名称:电视家vip
 使用声明：️此脚本仅供学习与交流，
         请勿转载与贩卖！️️️
 群1077223830
 *******************************
 [rewrite_local]
-^http[s]?:\/\/apic.qushuiyin.com\/index.php\/v4\/new\/vip\/memberVip url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/lh.js
-
-
+^http[s]?:\/\/123.56.125.184\/api\/v3\/user\/info.+$ url script-response-body 56.js
 [mitm] 
-hostname = *.qushuiyin.*
+hostname = *.56.*
 *******************************
 Surge
 
 [Script]
-^http[s]?:\/\/apic.qushuiyin.com\/index.php\/v4\/new\/vip\/memberVip.+$ requires-body=1,max-size=0,script-path=qushuiyin.js
+^http[s]?:\/\/123.56.125.184\/api\/v3\/user\/info.+$ requires-body=1,max-size=0,script-path=56.js
 
 [MITM]
-hostname = *.qushuiyin.*
+hostname = *.56.*
 
 *******************************/
-
-var body=$response.body;
-body = body.replace(/"free_search\":\d/g,'"free_search":999');
-body = body.replace(/"search_sum\":\d,'"search_sum":999,');
-$done(body);
+var obj = JSON.parse($response.body);
+    obj.equityTime= 4100434652000,;
+obj.adEquityTime= 4100434652000,;
+obj.isTopLevel= true,;
+    $done({body: JSON.stringify(obj)});
