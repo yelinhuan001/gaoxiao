@@ -9,6 +9,7 @@
 *******************************
 [rewrite_local]
 ^http[s]?:\/\/clean-xud.laoyinnianhua.com\/api\/guests\/login.+$ url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/lh.js
+
 [mitm] 
 hostname = *.laoyinnianhua.*
 *******************************
