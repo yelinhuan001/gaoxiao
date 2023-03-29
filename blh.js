@@ -6,7 +6,7 @@
 
 [rewrite_local]
 
-^https?:\/\/uc\.ubestkid\.com\/web\/user\/getUserProfile|https?:\/\/aicblhapp\.ubestkid\.com.*? url script-response-body blh.js
+^https?:\/\/uc\.ubestkid\.com\/web\/user\/getUserProfile|https?:\/\/aicblhapp\.ubestkid\.com.*? url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/blh.js
 
 [mitm] 
 
