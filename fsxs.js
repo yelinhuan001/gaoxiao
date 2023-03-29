@@ -4,7 +4,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/g20\.manmeng168\.com\/v1\/client\/user\/completeUserInfo.*? url script-response-body fsxs.js
+^https?:\/\/g20\.manmeng168\.com\/v1\/client\/user\/completeUserInfo.*? url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/fsxs.js
 
 
 [mitm]
