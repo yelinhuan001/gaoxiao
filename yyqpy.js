@@ -3,7 +3,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https:\/\/apis40\.qupeiyin\.com\/member\/index|https:\/\/apis40\.qupeiyin\.com\/funds\/vip_list|https:\/\/apis40\.qupeiyin\.com\/user\/member_data url script-response-body xyst.js
+^https:\/\/apis40\.qupeiyin\.com\/member\/index|https:\/\/apis40\.qupeiyin\.com\/funds\/vip_list|https:\/\/apis40\.qupeiyin\.com\/user\/member_data url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/yyqpy.js
 
 
 [mitm]
