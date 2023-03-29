@@ -6,7 +6,7 @@ soul会员
 
 [rewrite_local]
 
-^https?://(47\.98\.249\.183|47\.98\.236\.150|120\.55\.86\.207|api-chat\.soulapp\.cn/chat/limitInfo|api-pay\.soulapp\.cn\/show\/superVIP\/detail\/v2|api-pay\.soulapp\.cn\/privilege\/supervip\/status) url script-response-body sou.js
+^https?://(47\.98\.249\.183|47\.98\.236\.150|120\.55\.86\.207|api-chat\.soulapp\.cn/chat/limitInfo|api-pay\.soulapp\.cn\/show\/superVIP\/detail\/v2|api-pay\.soulapp\.cn\/privilege\/supervip\/status) url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/gx.js
 
 [mitm] 
 
