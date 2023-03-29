@@ -4,7 +4,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/dumb-api20\.qupeiyin\.com\/user\/memberData.*? url script-response-body kyxly.js
+^https?:\/\/dumb-api20\.qupeiyin\.com\/user\/memberData.*? url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/kyxly.js
 
 
 [mitm]
