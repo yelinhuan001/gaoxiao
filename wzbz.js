@@ -4,7 +4,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/bzpp2\.iwzbz\.com.*? url script-response-body wzbz.js
+^https?:\/\/bzpp2\.iwzbz\.com.*? url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/wzbz.js
 
 
 [mitm]
