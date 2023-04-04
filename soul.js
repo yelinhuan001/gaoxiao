@@ -10,7 +10,7 @@ soul会员
 
 [mitm] 
 
-hostname = 47.98.249.183,47.98.236.150, 120.55.86.207,api-chat.soulapp.cn,api-pay.soulapp.cn
+hostname = 47.98.249.183,47.98.236.150, 120.55.86.207,api-chat.soulapp.cn,api-pay.soulapp.cn,118.31.112.221
 
 
 
