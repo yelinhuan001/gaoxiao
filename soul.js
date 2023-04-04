@@ -6,7 +6,7 @@ soul会员
 
 [rewrite_local]
 
-^https?:\/\/47\.98\.249\.183.*?|https?:\/\/47\.98\.236\.150.*?|https?:\/\/47\.98\.249\.183.*?|https?:\/\/120\.55\.86\.207.*?|https?:\/\/api-chat\.soulapp\.cn\/chat\/limitInfo|https?:\/\/114\.215\.255\.94.*?|https?:\/\/120\.55\.55\.115.*?|https?:\/\/47\.98\.137\.249.*?|https?:\/\/47\.98\.54\.106.*?|https?:\/\/118\.31\.112\.221.*? url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/soul.js
+^https?:\/\/47\.98\.249\.183.*?|https?:\/\/47\.98\.236\.150.*?|https?:\/\/47\.98\.249\.183.*?|https?:\/\/120\.55\.86\.207.*?|https?:\/\/api-chat\.soulapp\.cn\/chat\/limitInfo|https?:\/\/114\.215\.255\.94.*?|https?:\/\/120\.55\.55\.115.*?|https?:\/\/47\.98\.137\.249.*?|https?:\/\/47\.98\.54\.106|https?:\/\/118\.31\.112\.221.*? url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/soul.js
 
 [mitm] 
 
