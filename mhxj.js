@@ -3,7 +3,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https:\/\/appss\.rhinoxlab\.com\/app\/account\/getAccountInfo url script-response-body mhxj.js
+^https:\/\/appss\.rhinoxlab\.com\/app\/account\/getAccountInfo url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/mhxj.js
 
 
 [mitm]
