@@ -5,7 +5,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/newdrugs\.dxy\.cn\/app\/user\/init|https?:\/\/newdrugs\.dxy\.cn\/app\/clinical-decision\/v3\/content|https?:\/\/newdrugs\.dxy\.cn\/app\/user\/basic-info.*? url script-response-body yyy.js
+^https?:\/\/newdrugs\.dxy\.cn\/app\/user\/init|https?:\/\/newdrugs\.dxy\.cn\/app\/clinical-decision\/v3\/content|https?:\/\/newdrugs\.dxy\.cn\/app\/user\/basic-info.*? url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/yyzytwo.js
 
 
 [mitm]
