@@ -7,7 +7,7 @@
 
 
 [mitm]
-hostname = appss.rhinoxlab.com/app
+hostname = appss.rhinoxlab.com
 %¥
 *******************************/
 
