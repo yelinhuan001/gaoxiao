@@ -5,7 +5,7 @@
 *****************************************
 
 [rewrite_local]
-^https:\/\/newdrugs\.dxy\.cn\/app\/user\/pro\/stat url script-response-body yyzs.js
+^https:\/\/newdrugs\.dxy\.cn\/app\/user\/pro\/stat url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/yyzs.js
 
 [mitm]
 hostname = newdrugs.dxy.cn
