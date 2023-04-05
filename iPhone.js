@@ -4,7 +4,7 @@
 
 [rewrite_local]
 
-^http[s]?:\/\/buy.itunes.apple.com\/verifyReceipt url script-response-body iphone.js
+^http[s]?:\/\/buy.itunes.apple.com\/verifyReceipt url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/iPhone.js
 
 [mitm] 
 
