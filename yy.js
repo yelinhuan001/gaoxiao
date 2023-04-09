@@ -6,7 +6,7 @@
 %¥
 [rewrite_local]
 ^https?:\/\/newdrugs\.dxy\.cn\/app\/user\/init|https?:\/\/newdrugs\.dxy\.cn\/app\/clinical-decision\/v3\/content|https?:\/\/newdrugs\.dxy\.cn\/app\/user\/basic-info.*? url script-response-body yyy.js
-
+^https:\/\/newdrugs\.dxy\.cn\/app\/user\/pro\/stat url script-response-body yyzs.js
 
 [mitm]
 hostname = newdrugs.dxy.cn
