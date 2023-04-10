@@ -5,7 +5,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/jz\.wacai\.com\/api\/usercenter\/userInfo|https?:\/\/jz\.wacai\.com\/jz-activity\/bkk-frontier\/api\/vipmember\/v3\/index|https?:\/\/jz\.wacai\.com\/api\/vipmember\/v3\/index.*? url script-response-body https://github.com/yelinhuan001/gaoxiao/edit/main/wcjz.js
+^https?:\/\/jz\.wacai\.com\/api\/usercenter\/userInfo|https?:\/\/jz\.wacai\.com\/jz-activity\/bkk-frontier\/api\/vipmember\/v3\/index|https?:\/\/jz\.wacai\.com\/api\/vipmember\/v3\/index.*? url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/wcjz.js
 
 
 [mitm]
