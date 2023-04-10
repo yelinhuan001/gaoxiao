@@ -2,7 +2,7 @@
 一起练琴
 
 [rewrite_local]
-^https?:\/\/api\.mangofuture\.cn\/client\/v2\/user_vip|https?:\/\/api\.lianqinba\.com\/client\/v2\/user_vip|https?:\/\/api\.lianqinba\.com\/client\/v2\/my_info|https?:\/\/api\.mangofuture\.cn\/client\/v2\/my_info|https?:\/\/api\.mangofuture\.cn\/client\/v2\/my_info.*? url script-response-body yqlq.js
+^https?:\/\/api\.mangofuture\.cn\/client\/v2\/user_vip|https?:\/\/api\.lianqinba\.com\/client\/v2\/user_vip|https?:\/\/api\.lianqinba\.com\/client\/v2\/my_info|https?:\/\/api\.mangofuture\.cn\/client\/v2\/my_info|https?:\/\/api\.mangofuture\.cn\/client\/v2\/my_info.*? url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/yqlq.js
 
 
 [mitm]
