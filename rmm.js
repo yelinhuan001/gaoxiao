@@ -4,7 +4,7 @@
 
 [rewrite_local]
 
-^https:\/\/ruanmianmian\.xinzhi\.space\/api\/v1\/queryDeviceBuyRecord url script-response-body hj.js
+^https:\/\/ruanmianmian\.xinzhi\.space\/api\/v1\/queryDeviceBuyRecord url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/rmm.js
 
 [mitm] 
 
