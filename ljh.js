@@ -4,7 +4,7 @@
 
 [rewrite_local]
 
-^https:\/\/guapi\.liangjihui\.com\/front\/user\/memberInfo url script-response-body ljh.js
+^https:\/\/guapi\.liangjihui\.com\/front\/user\/memberInfo url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/ljh.js
 
 [mitm] 
 
