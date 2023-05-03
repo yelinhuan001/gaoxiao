@@ -4,7 +4,7 @@ iphone通用内购2
 
 [rewrite_local]
 
-^https:\/\/api\.revenuecat\.com\/v1\/subscribers url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/iphonetwo.js
+^https:\/\/api\.revenuecat\.com\/v1\/subscribers url script-response-body https://github.com/yelinhuan001/gaoxiao/blob/8cbefd92ad8e8ea4aa6039967e27221fa97b2b92/iphonetwo.js
 
 [mitm] 
 
