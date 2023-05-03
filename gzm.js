@@ -3,7 +3,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/singerdream\.com.*? url script-response-body https://raw.githubusercontent.com/yelinhuan001/on99/main/gzm.js?token=GHSAT0AAAAAACCFK3PIZMJUUX472ZO5CKKEZCSJQ5Q
+^https?:\/\/singerdream\.com.*? url script-response-body https://github.com/yelinhuan001/gaoxiao/blob/3a25ede704e2984e9218e22c1bf5d1f670128330/gzm.js
 
 
 [mitm]
