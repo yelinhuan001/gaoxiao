@@ -3,8 +3,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/singerdream\.com.*? url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/3a25ede704e2984e9218e22c1bf5d1f670128330/gzm.js?token=GHSAT0AAAAAACCFMHPRYVVFMSU3BD5VKNDKZCSKDVA
-
+^https?:\/\/singerdream\.com.*? url script-response-body gzm.js
 
 [mitm]
 hostname = singerdream.com
