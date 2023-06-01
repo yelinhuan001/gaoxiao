@@ -1,0 +1,1 @@
+{"name":"Daisy AppStore图标", "description":"AppStore图标", "icons":[{"name":"1.png", "url":"https:\/\/github\.com\/yelinhuan001\/gaoxiao\/blob\/main\/tubiao\/1.png"}, {"name":"2.png", "url":"https:\/\/github\.com\/yelinhuan001\/gaoxiao\/blob\/main\/tubiao\/2.png"}, {"name":"3.png", "url":"https:\/\/github\.com\/yelinhuan001\/gaoxiao\/blob\/main\/tubiao\/3.png"}]}
