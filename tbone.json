@@ -1,2 +1,9 @@
-{"name":"AppStore","AppStore":[{"name":"001.png","url":"https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/tubiao/001.png"},
-{"name":"004.png","url":"https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/tubiao/004.png"}],
+{
+"name":"拿她练技术", 
+"description":"好好学习、天天向上",
+"icons":
+[
+{"name":"ㅤㅤㅤ1", "url":"https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/tubiao/001.png"},
+{"name":"ㅤㅤㅤ2", "url":"https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/tubiao/004.png"},
+]
+}
