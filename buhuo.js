@@ -1,3 +1,6 @@
+/*
+‼️规则完全免费，仅供学习交流，🈲️商业用途
+*/
 const cacheKey = 'video-url';
 const videoUrlPattern = /^https?:\/\/.*\/api\/app\/media\/m3u8\/.+\.m3u8$/;
 
