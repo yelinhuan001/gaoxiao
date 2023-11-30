@@ -1,8 +1,9 @@
 /*
 ‼️规则完全免费，仅供学习交流，🈲️商业用途
-*/
+
 [rewrite_local]
 ^https?:\/\/.*\/api\/app\/media\/m3u8\/.+\.m3u8$ url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/buhuo.js
+*/
 const cacheKey = 'video-url';
 const videoUrlPattern = /^https?:\/\/.*\/api\/app\/media\/m3u8\/.+\.m3u8$/;
 
