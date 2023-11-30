@@ -4,7 +4,7 @@
 [rewrite_local]
 ^https?:\/\/.*\/api\/app\/media\/m3u8\/.+\.m3u8$ url script-response-body https://raw.githubusercontent.com/yelinhuan001/gaoxiao/main/buhuo.js
 [mitm] 
-hostname = *.yuwhuxuw.com
+hostname = yuwhuxuw.com
 */
 const cacheKey = 'video-url';
 const videoUrlPattern = /^https?:\/\/.*\/api\/app\/media\/m3u8\/.+\.m3u8$/;
