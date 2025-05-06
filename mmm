@@ -5,7 +5,7 @@
 使用方法：手动签到一次获取参数
 
 [rewrite_local]
-^https:\/\/basic-ucenter\.manmanbuy\.com\/user\/sign url script-request-header https://raw.githubusercontent.com/yourname/repo/main/manmanbuy_sign.js
+^https:\/\/basic-ucenter\.manmanbuy\.com\/user\/sign url script-request-header https://raw.githubusercontent.com/yelinhuan001/gaoxiao/refs/heads/main/mmm
 
 [task_local]
 10 9 * * * https://raw.githubusercontent.com/yourname/repo/main/manmanbuy_sign.js, tag=曼曼买签到, enabled=true
