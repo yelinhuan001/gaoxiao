@@ -1,0 +1,99 @@
+//2025/5/5
+/*
+@Name：蓝氏猫粮
+@Author：揸你车头灯
+使用方法：手动签到一次获取金币
+[rewrite_local]
+^https:\/\/api\.vshop\.hchiv\.cn\/jfmb\/api\/play-default\/sign\/add-sign-new\.do url script-request-header https://raw.githubusercontent.com/ZenmoFeiShi/Qx/refs/heads/main/SoulSing.js
+
+[task_local]
+50 9 * * * https://raw.githubusercontent.com/ZenmoFeiShi/Qx/refs/heads/main/SoulSing.js, tag=Soul金币签到, img-url=https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/Soul.png, enabled=true
+
+[MITM]
+hostname = api.vshop.hchiv.cn
+
+*/
+const isQX = typeof $task !== "undefined";
+const isLoon = typeof $loon !== "undefined";
+const isRequest = typeof $request !== "undefined";
+
+const notify = (title, subtitle, message) => {
+  if (typeof $notify !== "undefined") {
+    $notify(title, subtitle, message);
+  } else if (typeof $notification !== "undefined") {
+    $notification.post(title, subtitle, message);
+  }
+};
+
+const log = (msg) => console.log(msg);
+
+const getVal = (key) => {
+  if (typeof $prefs !== "undefined") return $prefs.valueForKey(key);
+  if (typeof $persistentStore !== "undefined") return $persistentStore.read(key);
+  return null;
+};
+const setVal = (key, val) => {
+  if (typeof $prefs !== "undefined") return $prefs.setValueForKey(val, key);
+  if (typeof $persistentStore !== "undefined") return $persistentStore.write(val, key);
+  return null;
+};
+
+if (isRequest) {
+  const headers = $request.headers;
+  const url = $request.url;
+
+  setVal("soul_sign_url", url);
+  setVal("soul_sign_headers", JSON.stringify(headers));
+
+  notify("参数获取成功", "", "请求参数已保存");
+  $done({});
+} else {
+  const url = getVal("soul_sign_url");
+  const headersRaw = getVal("soul_sign_headers");
+
+  if (!url || !headersRaw) {
+    notify("蓝氏猫粮签到失败", "", "未找到请求参数");
+    $done();
+  } else {
+    const headers = JSON.parse(headersRaw);
+    const request = { url: url, method: "GET", headers: headers };
+
+    const handleResponse = (body) => {
+      try {
+        const json = JSON.parse(body);
+        // Modify this part according to the new API response structure
+        const msg = json?.msg || json?.message || "无 msg";
+        const success = json?.success || json?.code === 200;
+
+        notify(success ? "蓝氏猫粮签到成功" : "Soul金币签到失败", "", msg);
+        log("响应内容:\n" + body);
+      } catch (e) {
+        notify("解析失败", "", e.toString());
+      } finally {
+        $done();
+      }
+    };
+
+    if (isQX) {
+      $task.fetch(request).then(
+        (resp) => handleResponse(resp.body),
+        (err) => {
+          notify("请求失败", "", JSON.stringify(err));
+          $done();
+        }
+      );
+    } else if (isLoon) {
+      $httpClient.get(request, (err, resp, data) => {
+        if (err) {
+          notify("请求失败", "", JSON.stringify(err));
+          $done();
+        } else {
+          handleResponse(data);
+        }
+      });
+    } else {
+      notify("不支持的运行环境", "", "");
+      $done();
+    }
+  }
+}
