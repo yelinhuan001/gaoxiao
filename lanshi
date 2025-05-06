@@ -1,15 +1,15 @@
 //2025/5/5
 /*
-@Name：蓝氏猫粮签到
+@Name：猫粮签到
 @Author：根据原有脚本修改
-使用方法：手动签到一次获取金币
+使用方法：手动签到一次获取猫粮
 
 [rewrite_local]
 ^https:\/\/api\.vshop\.hchiv\.cn\/jfmb\/api\/play-default\/sign\/add-sign-new\.do url script-request-header https://raw.githubusercontent.com/yelinhuan001/gaoxiao/refs/heads/main/lanshi
 
 
 [task_local]
-50 9 * * * soul_sign.js, tag=Soul金币签到, img-url=https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/Soul.png, enabled=true
+50 9 * * * maoliang_sign.js, tag=猫粮签到, img-url=https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/cat.png, enabled=true
 
 [MITM]
 hostname = api.vshop.hchiv.cn
@@ -44,17 +44,17 @@ if (isRequest) {
   const headers = $request.headers;
   const url = $request.url;
 
-  setVal("soul_sign_url", url);
-  setVal("soul_sign_headers", JSON.stringify(headers));
+  setVal("maoliang_sign_url", url);
+  setVal("maoliang_sign_headers", JSON.stringify(headers));
 
-  notify("蓝氏猫粮签到", "", "参数获取成功，脚本将在每天自动签到");
+  notify("猫粮签到", "", "参数获取成功，脚本将在每天自动签到");
   $done({});
 } else {
-  const url = getVal("soul_sign_url");
-  const headersRaw = getVal("soul_sign_headers");
+  const url = getVal("maoliang_sign_url");
+  const headersRaw = getVal("maoliang_sign_headers");
 
   if (!url || !headersRaw) {
-    notify("蓝氏猫粮签到失败", "", "未找到请求参数，请先手动签到一次获取参数");
+    notify("猫粮签到失败", "", "未找到请求参数，请先手动签到一次获取参数");
     $done();
   } else {
     // 替换时间戳以确保请求有效
@@ -78,15 +78,27 @@ if (isRequest) {
 
     const handleResponse = (body) => {
       try {
+        log(`完整响应: ${body}`);
+        
+        // 保留原始响应格式
+        const originalResponse = body;
+        
+        // 解析JSON以获取成功状态
         const json = JSON.parse(body);
-        const msg = json?.msg || json?.message || "无返回消息";
         const success = json?.success || json?.code === 200;
-
-        log(`签到结果: ${success ? '成功' : '失败'}, 消息: ${msg}`);
-        notify(success ? "蓝氏猫粮签到成功" : "蓝氏猫粮签到失败", "", msg);
+        
+        // 设置标题
+        const title = success ? "猫粮签到成功" : "猫粮签到失败";
+        
+        // 输出结果到日志
+        log(`签到结果: ${success ? '成功' : '失败'}`);
+        log(`原始响应: ${originalResponse}`);
+        
+        // 通知显示原始响应
+        notify(title, "", originalResponse);
       } catch (e) {
         log(`解析响应失败: ${e.toString()}`);
-        notify("蓝氏猫粮签到失败", "", `解析响应失败: ${e.toString()}`);
+        notify("猫粮签到失败", "", `解析响应失败: ${e.toString()}`);
       } finally {
         $done();
       }
@@ -96,21 +108,21 @@ if (isRequest) {
       $task.fetch(request).then(
         (resp) => handleResponse(resp.body),
         (err) => {
-          notify("Soul金币签到失败", "", `请求失败: ${JSON.stringify(err)}`);
+          notify("猫粮签到失败", "", `请求失败: ${JSON.stringify(err)}`);
           $done();
         }
       );
     } else if (isLoon) {
       $httpClient.post(request, (err, resp, data) => {
         if (err) {
-          notify("蓝氏猫粮签到失败", "", `请求失败: ${JSON.stringify(err)}`);
+          notify("猫粮签到失败", "", `请求失败: ${JSON.stringify(err)}`);
           $done();
         } else {
           handleResponse(data);
         }
       });
     } else {
-      notify("蓝氏猫粮签到", "", "不支持的运行环境");
+      notify("猫粮签到", "", "不支持的运行环境");
       $done();
     }
   }
