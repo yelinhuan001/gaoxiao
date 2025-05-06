@@ -1,0 +1,113 @@
+//2024/6/20
+/*
+@Name：曼曼买自动签到
+@Author：YourName
+使用方法：手动签到一次获取参数
+
+[rewrite_local]
+^https:\/\/basic-ucenter\.manmanbuy\.com\/user\/sign url script-request-header https://raw.githubusercontent.com/yourname/repo/main/manmanbuy_sign.js
+
+[task_local]
+10 9 * * * https://raw.githubusercontent.com/yourname/repo/main/manmanbuy_sign.js, tag=曼曼买签到, enabled=true
+
+[MITM]
+hostname = basic-ucenter.manmanbuy.com
+*/
+
+const isQX = typeof $task !== "undefined";
+const isLoon = typeof $loon !== "undefined";
+const isRequest = typeof $request !== "undefined";
+
+// 统一通知函数
+const notify = (title, subtitle, message) => {
+  console.log(`${title}\n${subtitle}\n${message}`);
+  if (typeof $notify !== "undefined") {
+    $notify(title, subtitle, message);
+  } else if (typeof $notification !== "undefined") {
+    $notification.post(title, subtitle, message);
+  }
+};
+
+// 存储工具函数
+const getVal = (key) => {
+  if (typeof $prefs !== "undefined") return $prefs.valueForKey(key);
+  if (typeof $persistentStore !== "undefined") return $persistentStore.read(key);
+  return null;
+};
+
+const setVal = (key, val) => {
+  if (typeof $prefs !== "undefined") return $prefs.setValueForKey(val, key);
+  if (typeof $persistentStore !== "undefined") return $persistentStore.write(val, key);
+  return null;
+};
+
+// 主逻辑
+if (isRequest) {
+  // 拦截阶段：保存签到参数
+  const url = $request.url;
+  const headers = $request.headers;
+  
+  // 特别处理曼曼买需要的参数
+  const criticalHeaders = {
+    "Content-Type": headers["Content-Type"] || "application/json",
+    "Cookie": headers["Cookie"] || "",
+    "User-Agent": headers["User-Agent"] || "Mozilla/5.0"
+  };
+  
+  setVal("manmanbuy_sign_url", url);
+  setVal("manmanbuy_sign_headers", JSON.stringify(criticalHeaders));
+  
+  notify("曼曼买参数获取成功", "", "请勿重复操作，将自动执行签到");
+  $done({});
+} else {
+  // 执行签到阶段
+  const url = getVal("manmanbuy_sign_url");
+  const headersRaw = getVal("manmanbuy_sign_headers");
+  
+  if (!url || !headersRaw) {
+    notify("曼曼买签到失败", "", "请先手动签到一次获取参数");
+    $done();
+  } else {
+    const headers = JSON.parse(headersRaw);
+    const method = "POST"; // 曼曼买签到需要POST请求
+    
+    const request = {
+      url: url,
+      method: method,
+      headers: headers,
+      body: "{}" // 曼曼买签到需要空JSON体
+    };
+    
+    const handleResponse = (body) => {
+      try {
+        const json = JSON.parse(body);
+        if (json.code === 200) {
+          notify("曼曼买签到成功", `获得${json.data.points || 0}积分`, json.msg || "");
+        } else {
+          notify("曼曼买签到失败", `代码: ${json.code}`, json.msg || "未知错误");
+        }
+      } catch (e) {
+        notify("曼曼买响应解析失败", "", body.substring(0, 100));
+      }
+      $done();
+    };
+    
+    if (isQX) {
+      $task.fetch(request).then(
+        resp => handleResponse(resp.body),
+        err => notify("请求失败", "", err.error || "")
+      );
+    } else if (isLoon) {
+      $httpClient.post(request, (err, resp, data) => {
+        if (err) {
+          notify("请求失败", "", JSON.stringify(err));
+        } else {
+          handleResponse(data);
+        }
+      });
+    } else {
+      notify("环境不支持", "", "请在QX/Loon中运行");
+      $done();
+    }
+  }
+}
