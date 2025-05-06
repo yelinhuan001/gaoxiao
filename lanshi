@@ -1,38 +1,24 @@
-/**
- * @fileoverview Soul金币签到自动化脚本
- *
- * 使用方法：
- * 1. 在 Quantumult X 或 Loon 中配置 [rewrite_local] 规则拦截 Soul App 的金币签到请求，手动签到一次获取参数。
- * 2. 确保 [MITM] 包含 api.vshop.hchiv.cn。
- * 3. 配置 [task_local] 定时任务。
- *
- * 注意：抓取的参数（特别是 Authorization 或 cookie）可能有时效性，如果签到失败，可能需要重新手动签到抓取最新参数。
- */
-
+//2025/5/5
 /*
 @Name：蓝氏猫粮签到
-@Author：修改自 怎么肥事 的脚本，完善了请求参数处理
-使用方法：手动签到一次获取金币，确保请求参数被抓取保存
+@Author：根据原有脚本修改
+使用方法：手动签到一次获取金币
+
 [rewrite_local]
 ^https:\/\/api\.vshop\.hchiv\.cn\/jfmb\/api\/play-default\/sign\/add-sign-new\.do url script-request-header https://raw.githubusercontent.com/yelinhuan001/gaoxiao/refs/heads/main/lanshi
 
+
 [task_local]
-50 9 * * * https://raw.githubusercontent.com/你的仓库/你的脚本名/main/SoulSing_improved.js, tag=Soul金币签到, img-url=https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/Soul.png, enabled=true
+50 9 * * * soul_sign.js, tag=Soul金币签到, img-url=https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/Soul.png, enabled=true
 
 [MITM]
 hostname = api.vshop.hchiv.cn
 
 */
-
-// 判断运行环境和模式
 const isQX = typeof $task !== "undefined";
 const isLoon = typeof $loon !== "undefined";
 const isRequest = typeof $request !== "undefined";
 
-// 持久化存储的 Key
-const STORE_KEY = "soul_sign_request";
-
-// 通知函数
 const notify = (title, subtitle, message) => {
   if (typeof $notify !== "undefined") {
     $notify(title, subtitle, message);
@@ -41,144 +27,90 @@ const notify = (title, subtitle, message) => {
   }
 };
 
-// 日志函数
 const log = (msg) => console.log(msg);
 
-// 获取存储的值
 const getVal = (key) => {
   if (typeof $prefs !== "undefined") return $prefs.valueForKey(key);
   if (typeof $persistentStore !== "undefined") return $persistentStore.read(key);
   return null;
 };
-
-// 设置存储的值
 const setVal = (key, val) => {
   if (typeof $prefs !== "undefined") return $prefs.setValueForKey(val, key);
   if (typeof $persistentStore !== "undefined") return $persistentStore.write(val, key);
   return null;
 };
 
-// --- 主逻辑 ---
-
-// 如果是请求拦截模式 (抓取参数)
 if (isRequest) {
-  // 确保是目标 URL
-  if ($request.url.includes("/add-sign-new.do")) {
-    // 捕获完整的请求信息 (URL, Method, Headers, Body)
-    const requestData = {
-      url: $request.url,
-      method: $request.method,
-      headers: $request.headers,
-      body: $request.body // 捕获请求体
-    };
+  const headers = $request.headers;
+  const url = $request.url;
 
-    try {
-      // 将请求信息转换为 JSON 字符串并保存
-      setVal(STORE_KEY, JSON.stringify(requestData));
-      notify("蓝氏猫粮签到参数", "", "参数获取成功，请禁用重写规则后运行定时任务");
-      log("Soul签到请求参数已成功保存。");
-      // log("保存的请求参数: " + JSON.stringify(requestData)); // 可选：打印保存的参数方便调试
-    } catch (e) {
-      notify("蓝氏猫粮签到参数", "", "参数保存失败: " + e.toString());
-      log("保存参数失败: " + e.toString());
-    }
-  } else {
-      // 如果拦截了其他无关请求，不做处理
-      log("拦截到无关请求: " + $request.url);
-  }
-  // 在重写模式下，最后必须调用 $done({}) 来放行请求
+  setVal("soul_sign_url", url);
+  setVal("soul_sign_headers", JSON.stringify(headers));
+
+  notify("蓝氏猫粮签到", "", "参数获取成功，脚本将在每天自动签到");
   $done({});
+} else {
+  const url = getVal("soul_sign_url");
+  const headersRaw = getVal("soul_sign_headers");
 
-} else { // 如果是定时任务执行模式 (执行签到)
-
-  log("蓝氏猫粮签到任务开始...");
-
-  // 从存储中读取保存的请求信息
-  const savedRequestRaw = getVal(STORE_KEY);
-
-  if (!savedRequestRaw) {
-    notify("蓝氏猫粮签到失败", "", "未找到保存的请求参数，请先手动签到一次抓取参数。");
-    log("未找到保存的请求参数。");
+  if (!url || !headersRaw) {
+    notify("蓝氏猫粮签到失败", "", "未找到请求参数，请先手动签到一次获取参数");
     $done();
   } else {
-    let savedRequest;
-    try {
-      // 解析 JSON 字符串为请求对象
-      savedRequest = JSON.parse(savedRequestRaw);
-      // 确保包含必要的属性
-      if (!savedRequest || !savedRequest.url || !savedRequest.method || !savedRequest.headers) {
-           throw new Error("保存的请求参数不完整。");
-      }
-    } catch (e) {
-      notify("蓝氏猫粮签到失败", "", "解析保存的请求参数失败: " + e.toString());
-      log("解析保存的请求参数失败: " + e.toString());
-      $done();
-      return; // 结束执行
-    }
+    // 替换时间戳以确保请求有效
+    const timestamp = new Date().getTime();
+    const newUrl = url.replace(/timestamp=\d+/, `timestamp=${timestamp}`);
+    
+    const headers = JSON.parse(headersRaw);
+    const request = { 
+      url: newUrl, 
+      method: "POST", 
+      headers: headers,
+      body: JSON.stringify({
+        "appId": headers["appId"] || url.match(/appId=([^&]+)/)?.[1] || "",
+        "openId": true,
+        "shopNick": "",
+        "timestamp": timestamp,
+        "interfaceSource": 0,
+        "activityId": "158245"
+      })
+    };
 
-    // 处理请求响应的函数
     const handleResponse = (body) => {
       try {
         const json = JSON.parse(body);
-        // 根据实际API响应调整 success 和 message 的判断
-        // 假设成功是 success: true 或者 code: 200
-        // 假设消息在 msg 或 message 字段
-        const success = json?.success === true || json?.code === 200;
-        const msg = json?.msg || json?.message || JSON.stringify(json); // 如果没有特定消息字段，显示整个响应体
+        const msg = json?.msg || json?.message || "无返回消息";
+        const success = json?.success || json?.code === 200;
 
+        log(`签到结果: ${success ? '成功' : '失败'}, 消息: ${msg}`);
         notify(success ? "蓝氏猫粮签到成功" : "蓝氏猫粮签到失败", "", msg);
-        log("签到响应内容:\n" + body);
-
       } catch (e) {
-        notify("蓝氏猫粮签到解析失败", "", e.toString());
-        log("解析响应失败: " + e.toString() + "\n原始响应体:\n" + body);
+        log(`解析响应失败: ${e.toString()}`);
+        notify("蓝氏猫粮签到失败", "", `解析响应失败: ${e.toString()}`);
       } finally {
-        $done(); // 完成任务
+        $done();
       }
     };
 
-    // 根据环境发送请求
     if (isQX) {
-      log("使用 Quantumult X 发送请求...");
-      $task.fetch(savedRequest).then(
-        (resp) => {
-          // QX 的 response body 在 resp.body
-          if (resp.statusCode === 200) {
-             handleResponse(resp.body);
-          } else {
-             notify("蓝氏猫粮签到失败", `HTTP状态码: ${resp.statusCode}`, resp.body);
-             log(`请求失败，状态码: ${resp.statusCode}\n响应体:\n${resp.body}`);
-             $done();
-          }
-        },
+      $task.fetch(request).then(
+        (resp) => handleResponse(resp.body),
         (err) => {
-          notify("蓝氏猫粮签到请求失败", "", JSON.stringify(err));
-          log("请求失败: " + JSON.stringify(err));
+          notify("Soul金币签到失败", "", `请求失败: ${JSON.stringify(err)}`);
           $done();
         }
       );
     } else if (isLoon) {
-      log("使用 Loon 发送请求...");
-       // Loon 使用 $httpClient.request 支持指定 method 和 body
-      $httpClient.request(savedRequest, (err, resp, data) => {
+      $httpClient.post(request, (err, resp, data) => {
         if (err) {
-          notify("蓝氏猫粮签到请求失败", "", JSON.stringify(err));
-          log("请求失败: " + JSON.stringify(err));
+          notify("蓝氏猫粮签到失败", "", `请求失败: ${JSON.stringify(err)}`);
           $done();
         } else {
-           // Loon 的 response body 在 data
-           if (resp.statusCode === 200) {
-              handleResponse(data);
-           } else {
-              notify("蓝氏猫粮签到失败", `HTTP状态码: ${resp.statusCode}`, data);
-              log(`请求失败，状态码: ${resp.statusCode}\n响应体:\n${data}`);
-              $done();
-           }
+          handleResponse(data);
         }
       });
     } else {
       notify("蓝氏猫粮签到", "", "不支持的运行环境");
-      log("不支持的运行环境");
       $done();
     }
   }
